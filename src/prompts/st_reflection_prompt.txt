@@ -1,0 +1,11 @@
+You are an expert in evolutionary algorithms. Here are two pieces of operator code: one with better performance (Better) and one with poorer performance (Worse).
+Please analyze the differences between the two and provide concise improvement hints that explain how to modify the worse-performing code to match or exceed the performance of the better-performing code.
+【Problem_Desc】:{problem_desc}
+【Worse Code】:{worse_code}
+【Better Code】:{better_code}
+
+Reflection Guidelines:
+1. **Context-Aware Analysis**: Analyze how each operator interacts with the specific constraints and fitness landscape described in the 【Problem_Desc】.
+2. **Mechanistic Comparison**: Identify which specific heuristic in the "Better Code" (e.g., preserving local clusters, maintaining feasibility, or balancing objective trade-offs) is missing in the "Worse Code".
+3. **Strategic Pivot**: Explain why a certain logical shift is necessary to solve the bottleneck of this specific problem.
+Output only the improvement hints,do not include complete code.

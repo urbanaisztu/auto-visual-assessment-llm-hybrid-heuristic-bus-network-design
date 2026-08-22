@@ -1,0 +1,25 @@
+
+<problem_desc>{problem_desc}</problem_desc>
+
+<summary_detail>{summary_detail}</summary_detail>
+
+INSTRUCTION
+Synthesize the provided information to formulate several, high-quality heuristic rules specifically for a **Mutation Operator**.
+
+The goal is **"Aggressive Exploration"**: Break out of local optima by introducing structural novelty and capturing neglected demand.
+
+Focus your heuristic on:
+
+1. **Targeted Insertion of "Ghost" Nodes:**
+   - Formulate a rule to scan the global map for high-demand nodes that are currently *ignored* by the population.
+   - Mandate a strategy to **force-insert** these nodes into the route, even if it significantly increases path length (sacrificing Visual Fitness for Satisfy Fitness).
+
+2. **"Ruin and Recreate" Strategy:**
+   - Identify the "Dead Weight" segment of the current route (the sequence of edges contributing the least to total fitness).
+   - Dictate a rule to completely **destroy** this segment and **rebuild** the connection using a randomized or greedy-demand pathfinding algorithm, distinct from the population's dominant logic.
+
+OUTPUT CONSTRAINTS
+Strictly output ONLY the text description of the heuristic rule.
+The output must be a dense paragraph of actionable logic.
+Do not include any introductory text, explanations, titles, or conversational fillers.
+Do not use markdown formatting. Raw text only.

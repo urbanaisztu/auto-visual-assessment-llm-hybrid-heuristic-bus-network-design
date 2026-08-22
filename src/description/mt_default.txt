@@ -1,0 +1,61 @@
+def mt_operator(input_ind, env):
+    try:
+        # 1. 深度复制，避免修改原始个体
+        ind = copy.deepcopy(input_ind)
+
+        # 2. 随机选择一条路线
+        if not ind: return (ind, )
+        idx = random.randint(0, len(ind) - 1)
+        route = ind[idx]
+
+        # 路线过短则跳过
+        if len(route) < 4:
+            return (ind, )
+
+        # 3. 随机选择两个切点 u 和 v
+        # 逻辑：保留路段头尾，中间进行重构
+        cut_u = random.randint(0, len(route) - 3)
+        cut_v = random.randint(cut_u + 2, len(route) - 1)
+        u, v = route[cut_u], route[cut_v]
+
+        # 4. 变异策略选择 (模拟原有的 strategies)
+        # 这里显式定义权重函数，教 LLM 如何利用 env 数据
+        dice = random.random()
+
+        def weight_func(u_, v_, d):
+            # 默认权重：物理距离
+            length = d.get('length', 1.0)
+
+            if dice < 0.33:
+                # 策略 A: 视觉优先 (Visual)
+                # 假设 PI/NI 越高越好，作为 Cost 分母
+                pi = d.get('PI', 0.0)
+                ni = d.get('NI', 0.0)
+                return length / (1.0 + pi - ni)
+
+            elif dice < 0.66:
+                # 策略 B: 需求优先 (Demand)
+                # 需求越高，Cost 越低
+                dem_u = env.tourist_map.get(u_, 0)
+                dem_v = env.tourist_map.get(v_, 0)
+                return length / (1.0 + dem_u + dem_v)
+
+            else:
+                # 策略 C: 平滑/最短路 (Smooth)
+                return length
+
+        # 5. 执行重连 (Ruin and Recreate)
+        # 使用 Dijkstra 寻找新的子路径
+        subpath = nx.shortest_path(env.G, u, v, weight=weight_func)
+
+        # 6. 拼接修复
+        # 注意：subpath[1:-1] 是为了避免 u 和 v 重复
+        # 原路段: [Start ... u] + [新路径] + [v ... End]
+        new_route = route[:cut_u+1] + subpath[1:-1] + route[cut_v:]
+
+        ind[idx] = new_route
+        return (ind, )
+
+    except Exception as e:
+        # 出错时返回原个体（安全兜底）
+        return (copy.deepcopy(input_ind), )

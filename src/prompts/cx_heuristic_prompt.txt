@@ -1,0 +1,25 @@
+
+<problem_desc>{problem_desc}</problem_desc>
+
+<summary_detail>{summary_detail}</summary_detail>
+
+INSTRUCTION
+Synthesize the provided information to formulate several, high-quality heuristic rules specifically for a **Crossover Operator**.
+
+The goal is **"Safe Inheritance"**: Combine the best structural features of both parents without destroying their high-quality sub-paths ("Building Blocks").
+
+Focus your heuristic on:
+
+1. **"Safe Cut" Identification (Where to Cut):**
+   - Formulate a rule to identify "Weak Links" (e.g.,edges with low visual scores and zero demand) as the *only* valid locations for cutting.
+   - Explicitly FORBID cutting through "Building Blocks" (e.g.,continuous segments of high-demand or high-visual edges). The rule must dictate that cuts should occur *between* clusters, not *inside* them.
+
+2. **Demand-Aware Splicing (How to Connect):**
+   - When splicing a segment from Parent A to Parent B, the connection points might not be adjacent.
+   - The rule must enforce a **weighted repair** logic (e.g., `cost = length / (1 + demand)`) to bridge these gaps, ensuring the splice doesn't create a "dead zone" of low satisfaction.
+
+OUTPUT CONSTRAINTS
+Strictly output ONLY the text description of the heuristic rules.
+The output must be a dense paragraph of actionable logic.
+Do not include any introductory text, explanations, titles, or conversational fillers.
+Do not use markdown formatting. Raw text only.

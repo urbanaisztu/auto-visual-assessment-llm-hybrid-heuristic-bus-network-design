@@ -1,0 +1,45 @@
+<problem_desc>
+{problem_desc}
+</problem_desc>
+
+<heuristic_rule>
+{heuristic_rule}
+</heuristic_rule>
+
+<default_crossover_operator>
+{default_crossover_operator}
+</default_crossover_operator>
+
+<env_structure>
+{env_structure}
+</env_structure>
+
+**TASK:**
+Based on the problem description and the heuristic rules provided in <heuristic_rule>, generate an optimized crossover operator `cx_operator`. Specifically, you are allowed to randomly select one rule, multiple rules, or a combination of partial contents from different rules in <heuristic_rule> as the core reference for designing the operator.
+The goal is to generate an operator that is logically superior to the default one, effectively combining the traits of two parents while maintaining route validity.
+
+**CRITICAL IMPLEMENTATION DETAILS:**
+1. **Library Context**: Assume the following libraries are available: `import networkx as nx`, `import random`, `import numpy as np`, `import copy`, `import math`, `import pandas as pd`. You can use them directly.
+2. **Heuristic Integration**: You MUST attempt to apply the logic from <heuristic_rule> (e.g., how to select cut points, how to repair paths) within the code.
+3. **Robustness**: Graph operations (like `nx.shortest_path`) can fail. You MUST wrap your core logic in a `try-except` block. If an error occurs (e.g., path not found), fallback to a safe operation (e.g., return copies of the parents).
+4. **Node Casting**: As per strict rules, assume node IDs in `env.G` are integers. Always cast with `int()` when accessing graph nodes.
+5. **Intersection Repair**: When splicing routes $R_1$ (ending at $u$) and $R_2$ (starting at $v$), check `if not env.G.has_edge(int(u), int(v)):`. If edge is missing, use `nx.shortest_path(env.G, int(u), int(v), weight='weight')` to bridge them.
+
+**HARD CODING RULES (NON-NEGOTIABLE):**
+1. **Function Name**: `def cx_operator(input_ind1, input_ind2, env):`
+2. **Inputs**: `input_ind1` and `input_ind2` are **Lists of Lists** (List[List[int]]).
+   - Each inner list is a route: `[node_id1, node_id2, ...]`.
+   - The outer list contains multiple routes: `[route1, route2, ...]`.
+3. **Outputs**: Must return a tuple of two new individuals: `(new_ind1, new_ind2)`.
+   - **CRITICAL**: Each `new_ind` must be exactly the same structure as input (List[List[int]]).
+   - **WARNING**: Do NOT return `[ [ [nodes...] ] ]` (3 layers) or `[ nodes... ]` (1 layer). It MUST be `[ [nodes...], [nodes...] ]`.
+4. **No External Dependencies**: Do not introduce new helper functions outside the main function scope. Keep everything self-contained.
+5. **NO HALLUCINATED VARIABLES**: You are STRICTLY FORBIDDEN from using variables that are not defined inside the function or passed as arguments.
+   - BANNED: `mut_prob_index`, `indpb`, `CXPB`, `MUTPB`, `toolbox`, `creator`.
+6. **Self-Containment**: The code must be self-contained. If you need a helper function, define it INSIDE `cx_operator`.
+
+--- OUTPUT FORMAT INSTRUCTION ---
+YOUR RESPONSE MUST CONTAIN ONLY THE PYTHON CODE BLOCK.
+1. DO NOT include any explanatory text, preambles, or post-code comments.
+2. The entire output MUST be enclosed by ```python and ```.
+3. Code must be highly efficient. Avoid infinite loops.

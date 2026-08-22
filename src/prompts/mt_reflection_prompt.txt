@@ -1,0 +1,41 @@
+You are an expert in Evolutionary Algorithms. Your task is to apply a "Strategic Mutation" to an existing operator code to strictly implement a new long-term strategy.
+The goal is to modify the provided [Code] (Current Elite) according to the [Prior Reflection] to break stagnation or improve efficiency.
+
+[Prior Reflection] (The Strategy to Implement)
+{reflection}
+
+[Code] (The Current Elite Operator)
+{elitist_code}
+
+### IMPLEMENTATION INSTRUCTIONS
+1. **Analyze the Strategy & Operator Type**:
+   - **IF CROSSOVER (Exploitation Focus)**:
+     - The goal is **Stable Recombination**. Implementing logic to swap *functionally equivalent* segments between parents or using "Similarity-Based Cutting" (cutting where parents are close in space).
+     - Focus on **"Cluster Protection"**: Ensure that high-performing sub-paths are treated as atomic units and kept intact during the swap.
+   - **IF MUTATION (Exploration Focus)**:
+     - The goal is **Disruption**. Implement logic like "Ruin and Recreate", "Force Insert", or "Random Destruct" to escape local optima.
+   
+2. **Modify the Code**: Rewrite the [Code] to embody this strategy.
+   - You can replace internal helper functions or logic flow.
+   - **CRITICAL**: Do NOT break the external interface.
+
+### STRICT ENGINEERING REQUIREMENTS
+1. **Signature Preservation**: 
+   - You MUST keep the **exact same function name and arguments** as the [Code] provided above.
+
+2. **Return Format**:
+   - Keep the return statement format exactly consistent with the original [Code] (Tuple of 1 for mutation, Tuple of 2 for crossover).
+
+3. **Robustness**:
+   - Graph searches (DFS/BFS/Dijkstra) MUST have step limits to prevent deadlocks.
+   - Used `try-except` to handle disconnected graph components.
+   - **Fallback**: If the new logic fails at runtime, return the original individual(s).
+
+--- ENVIRONMENT SPECIFICATIONS ---
+Ensure all calls to `env` (e.g., `env.distance_map`, `env.get_demand(...)`) are valid.
+[env_structure]
+{env_structure}
+
+--- OUTPUT FORMAT ---
+Output ONLY the Python code block: ```python ... ```.
+No comments, no explanations.

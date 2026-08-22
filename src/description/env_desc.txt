@@ -1,0 +1,102 @@
+# Environment API Documentation
+
+The `env` object is a read-only data container representing the urban network environment. All algorithms must rely solely on the attributes defined below.
+
+## 1. Core Graph Structure: `env.G`
+**Type**: `networkx.Graph`
+**Node Type**: Python native `int` (NOT numpy types).
+
+- **Node Attributes**:
+  - `env.G.nodes[u]['tourist']` (int): 1 if the node is a tourist attraction, 0 otherwise.
+  - `env.G.nodes[u]['lng']` (float): Longitude coordinate.
+  - `env.G.nodes[u]['lat']` (float): Latitude coordinate.
+
+- **Edge Attributes** (Access via `env.G.adj[u][v]` or `env.G[u][v]`):
+  - `length` (float): Physical distance of the edge.
+  - `PI` (float): Positive visual index.
+  - `NI` (float): Negative visual index.
+
+**Usage Example**:
+```python
+# Check neighbors
+neighbors = list(env.G.neighbors(current_node))
+
+# Get edge attributes safely
+if env.G.has_edge(u, v):
+    length = env.G.edges[u, v]['length']
+    pi = env.G.adj[u][v]['PI']
+2. Traffic Flow Data: env.flow
+Type: Dict[int, Dict[int, float]] (Nested Dictionary) Description: Stores traffic flow volume between two connected nodes.
+
+Structure: env.flow[u][v] -> float (flow value).
+
+Important: This is a sparse dictionary, not a matrix.
+
+Constraints:
+
+Accessing env.flow[u][v] may raise KeyError if no flow data exists for that link.
+
+Always use .get() or try-except blocks.
+
+Usage Example:
+
+Python
+
+# Correct way to get flow
+u, v = int(node1), int(node2) # Ensure native int
+try:
+    flow_val = env.flow[u][v]
+except KeyError:
+    flow_val = 0.0
+# Or
+flow_val = env.flow.get(u, {}).get(v, 0.0)
+3. Cost Matrix: env.cost_matrix
+Type: Dict[int, Dict[int, Dict[str, float]]] Description: Pre-computed costs between key nodes (OD pairs).
+
+Structure: env.cost_matrix[origin_id][dest_id] -> Dict
+
+Inner Keys:
+
+'sum_dis' (float): Total distance.
+
+'avg_pi' (float): Average Positive Impact.
+
+'avg_ni' (float): Average Negative Impact.
+
+Note: Does NOT typically contain explicit paths list unless specified otherwise. Use nx.shortest_path(env.G, u, v) if a geometry is needed.
+
+Usage Example:
+
+Python
+
+if u in env.cost_matrix and v in env.cost_matrix[u]:
+    info = env.cost_matrix[u][v]
+    total_dist = info['sum_dis']
+4. Helper Attributes & Maps
+For fast lookups without graph traversal:
+
+env.tourist_map: Dict[int, int]. Key: Node ID, Value: 0 or 1.
+
+env.distance_map: Dict[(u, v), float]. Key: Edge tuple, Value: length.
+
+env.PI_map: Dict[(u, v), float].
+
+env.NI_map: Dict[(u, v), float].
+
+5. Route Initialization Info: env.init_route
+Type: Dict[str, Dict] Values:
+
+'arc': List of node tuples [(u, v), (v, w), ...].
+
+'stop_num': int, number of stops.
+
+'start_end': List[int], [start_node, end_node].
+
+Critical Coding Constraints for LLM
+No Numpy Ints: Graph nodes use Python native int. If iterating over a numpy array, cast indices: node = int(arr[i]).
+
+KeyErrors: env.flow and env.cost_matrix are sparse. Never access them directly without safety checks (.get() or try-except).
+
+No Assumptions: Do not assume env.flow is a numpy array. It is a dictionary.
+
+NetworkX API: Use standard NetworkX 2.x API (e.g., nx.shortest_path, nx.all_simple_paths).

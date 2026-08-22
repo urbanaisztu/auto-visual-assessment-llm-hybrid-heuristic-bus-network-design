@@ -1,0 +1,332 @@
+{
+  "type": "FeatureCollection",
+  "name": "route_nodes",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_1095",
+        "node_id": 612,
+        "type": "origin",
+        "new_node_id": 612
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.16546213111619,
+          22.57111772650553
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_1095",
+        "node_id": 291,
+        "type": "destination",
+        "new_node_id": 291
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.00627820980722,
+          22.534257067303912
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_1139",
+        "node_id": 9,
+        "type": "origin",
+        "new_node_id": 9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.88058267150986,
+          22.480952172969797
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_1139",
+        "node_id": 516,
+        "type": "destination",
+        "new_node_id": 516
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.1121306202565,
+          22.538035371885865
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_1316",
+        "node_id": 595,
+        "type": "origin",
+        "new_node_id": 595
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.13900150435566,
+          22.564389857413634
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_1316",
+        "node_id": 222,
+        "type": "destination",
+        "new_node_id": 222
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.95804311106248,
+          22.59633987662602
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_1627",
+        "node_id": 511,
+        "type": "origin",
+        "new_node_id": 511
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.10807040996495,
+          22.57251254796319
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_1627",
+        "node_id": 205,
+        "type": "destination",
+        "new_node_id": 205
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.94982903747655,
+          22.590812285656952
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_305",
+        "node_id": 620,
+        "type": "origin",
+        "new_node_id": 620
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.18096162729107,
+          22.557773709623763
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_305",
+        "node_id": 0,
+        "type": "destination",
+        "new_node_id": 0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.86600056328803,
+          22.51122354349483
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_447",
+        "node_id": 620,
+        "type": "origin",
+        "new_node_id": 620
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.18096162729107,
+          22.557773709623763
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_447",
+        "node_id": 321,
+        "type": "destination",
+        "new_node_id": 321
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.03268489893526,
+          22.562187021917154
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_669",
+        "node_id": 620,
+        "type": "origin",
+        "new_node_id": 620
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.18096162729107,
+          22.557773709623763
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_669",
+        "node_id": 21,
+        "type": "destination",
+        "new_node_id": 21
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.89102366994358,
+          22.481073356804796
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_675",
+        "node_id": 523,
+        "type": "origin",
+        "new_node_id": 523
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.11424162297223,
+          22.53596638738303
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_675",
+        "node_id": 20,
+        "type": "destination",
+        "new_node_id": 20
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.89095769098914,
+          22.468659458611555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_677",
+        "node_id": 239,
+        "type": "origin",
+        "new_node_id": 239
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.96334766711468,
+          22.54208418174682
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_677",
+        "node_id": 594,
+        "type": "destination",
+        "new_node_id": 594
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.13851072130342,
+          22.573887657767067
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_781",
+        "node_id": 48,
+        "type": "origin",
+        "new_node_id": 48
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.90979199355381,
+          22.544632281357675
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line_id": "lineID_781",
+        "node_id": 592,
+        "type": "destination",
+        "new_node_id": 592
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.13745928792001,
+          22.56901484928036
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+Problem Description: Multi-Objective Tourist Bus Route Planning
+
+This is a graph-based optimization problem on a city map (NetworkX graph) with 620 nodes and 910 edges. The goal is to evolve a population of bus routes to simultaneously optimize two CONFLICTING objectives:
+
+1. Maximize Visual Quality (Visual Fitness): Calculated based on edge attributes (PI - NI) / Length. This objective tends to favor shorter, direct paths with high aesthetic scores.
+2. Maximize Tourist Demand Satisfaction (Satisfy Fitness): Calculated based on the number of unique high-demand tourist nodes covered by the route. This objective requires the bus to "detour" to visit specific popular nodes, often increasing path length.
+
+Constraints:
+- Routes must be navigable (continuous sequence of edges).
+- Each route has a fixed Start Node and End Node (Depot constraints).
+- Bus capacity limits apply.

@@ -1,0 +1,45 @@
+<problem_desc>
+{problem_desc}
+</problem_desc>
+
+<heuristic_rule>
+{heuristic_rule}
+</heuristic_rule>
+
+<default_mutation_operator>
+{default_mutation_operator}
+</default_mutation_operator>
+
+<env_structure>
+{env_structure}
+</env_structure>
+
+**TASK:**
+Based on the problem description and the heuristic rules provided in <heuristic_rule>, generate an optimized crossover operator `mt_operator`. Specifically, you are allowed to randomly select one rule, multiple rules, or a combination of partial contents from different rules in <heuristic_rule> as the core reference for designing the operator.
+The goal is to generate an operator that is logically superior to the default one, effectively introducing beneficial perturbations (exploration) or structural improvements (exploitation) to a single parent while maintaining route validity.
+
+**CRITICAL IMPLEMENTATION DETAILS:**
+1. **Library Context**: Assume the following libraries are available: `import networkx as nx`, `import random`, `import numpy as np`, `import copy`, `import math`, `import pandas as pd`. You can use them directly.
+2. **Heuristic Integration**: You MUST attempt to apply the logic from <heuristic_rule> (e.g., targeted insertion of high-demand nodes, "ruin and recreate" specific segments) within the code.
+3. **Robustness**: Graph operations (like `nx.shortest_path`) can fail. You MUST wrap your core logic in a `try-except` block. If an error occurs (e.g., path not found), fallback to a safe operation (e.g., return a copy of the original individual).
+4. **Node Casting**: As per strict rules, assume node IDs in `env.G` are integers. Always cast with `int()` when accessing graph nodes.
+5. **Connectivity Repair**: Mutation often breaks route continuity (e.g., when deleting a node or inserting a distant node). You MUST check connectivity. If `env.G.has_edge(u, v)` is False, use `nx.shortest_path` (preferably with a weighted cost function considering demand, if suggested by the rule) to bridge the gap.
+
+**HARD CODING RULES (NON-NEGOTIABLE):**
+1. **Function Name**: `def mt_operator(input_ind, env):`
+2. **Inputs**:
+   - `input_ind`: A **List of Lists** (List[List[int]]). This represents one individual containing multiple routes.
+   - `env`: The compatibility environment object containing `env.G`, `env.tourist_map`, `env.distance_map`, etc.
+3. **Outputs**: Must return a **Tuple** containing the single new individual: `(new_ind, )`.
+   - **CRITICAL**: `new_ind` must be exactly the same structure as input (List[List[int]]).
+   - **WARNING**: Do NOT return just `new_ind`. It MUST be a tuple `(new_ind, )` to comply with DEAP standards.
+4. **No External Dependencies**: Do not introduce new helper functions outside the main function scope. Keep everything self-contained.
+5. **NO HALLUCINATED VARIABLES**: You are STRICTLY FORBIDDEN from using variables that are not defined inside the function or passed as arguments.
+   - BANNED: `mut_prob_index`, `indpb`, `CXPB`, `MUTPB`, `toolbox`, `creator`, `self`.
+6. **Self-Containment**: The code must be self-contained. If you need a helper function (e.g., `repair_route`), define it INSIDE `mutation`.
+
+--- OUTPUT FORMAT INSTRUCTION ---
+YOUR RESPONSE MUST CONTAIN ONLY THE PYTHON CODE BLOCK.
+1. DO NOT include any explanatory text, preambles, or post-code comments.
+2. The entire output MUST be enclosed by ```python and ```.
+3. Code must be highly efficient. Avoid infinite loops.

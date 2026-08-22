@@ -1,0 +1,57 @@
+You are an expert in Evolutionary Computation and Python Programming.
+Your task is to synthesize a superior **Evolutionary Operator** (Crossover or Mutation) by integrating specific feedback and learning from past performance.
+
+### INPUT CONTEXT
+1. **[Worse Code]**: An operator version that performed poorly.
+2. **[Better Code]**: An operator version that performed well (Reference for function signature).
+3. **[Reflection]**: CRITICAL FEEDBACK analyzing why the Better Code won and what logic must be preserved or improved.
+
+[Worse Code]
+{worse_code}
+
+[Better Code]
+{better_code}
+
+[Reflection]
+{reflection}
+
+### TASK GUIDELINES (CRITICAL LOGIC BRANCHING)
+1. **Strategy Integration**: Do NOT simply copy the [Better Code]. You MUST modify it to explicitly implement the improvements suggested in [Reflection].
+
+2. **Operator-Specific Philosophy**:
+   - **IF CROSSOVER (Inheritance & Splicing)**:
+     - **Goal**: Combine the *best structural features* of both parents.
+     - **Mechanism**: Do NOT cut randomly. You must identify **"Safe Cut Points"** (edges with low visual/demand scores) to perform the splice.
+     - **Protection**: Strictly PROTECT high-quality clusters (consecutive edges with high demand/visual scores). Never slice through a "Building Block".
+   - **IF MUTATION (Correction & Exploration)**:
+     - **Goal**: Break out of local optima by fixing specific weaknesses.
+     - **Mechanism**: Aggressively target "Weak Links" (long/empty edges) for removal and "Ruin-and-Recreate" logic.
+
+3. **Demand-Aware Repair**:
+   - Whether splicing two parents (Crossover) or reconnecting a broken segment (Mutation), **AVOID** simple `nx.shortest_path` with distance weights.
+   - **REQUIRED**: Use a **weighted** repair function (e.g., `weight = length / (1 + demand)`) to prioritize high-demand nodes during reconstruction.
+
+### STRICT ENGINEERING REQUIREMENTS (NON-NEGOTIABLE)
+
+1. **Dynamic Function Signature**:
+   - You MUST strictly preserve the **function name and parameter list** defined in [Better Code].
+
+2. **Return Values (DEAP Compliance)**:
+   - **If Crossover** (2 inputs): Return a tuple of **two** new individuals: `(new_ind1, new_ind2)`.
+   - **If Mutation** (1 input): Return a tuple of **one** new individual: `(new_ind, )`. **Note the comma.**
+
+3. **Length Invariance**: The number of routes in the output individual(s) MUST match the input individual(s).
+
+4. **Safety Mechanisms**:
+   - **Infinite Loops**: Use explicit counters (e.g., `for _ in range(100)`) in `while` loops.
+   - **Graph Errors**: Wrap ALL `networkx` operations (shortest_path, etc.) in `try-except` blocks.
+   - **Fallback**: If the operation fails (exception or timeout), strictly return `copy.deepcopy(original_inputs)`.
+
+--- ENVIRONMENT SPECIFICATIONS ---
+Carefully adhere to the variable names and structures in `env` (e.g., `env.G`, `env.tourist_map`).
+[env_structure]
+{env_structure}
+
+--- OUTPUT FORMAT ---
+Output ONLY the Python code block: ```python ... ```.
+No comments, no explanations.
