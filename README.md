@@ -1,11 +1,12 @@
 <p align="center">
-  <img src="../fig/logo.png" alt="Logo" width="200">
+  <img src="./fig/logo.png" alt="Logo" width="200">
 </p>
 <h4 align="center">Automated Visual Experience Assessment & Network Optimization with assist of LLM</h4>
 
 <p align="center">
-  <img src="../fig/VEdtb.png" alt="Visual Experience Database">
+  <img src="./fig/VEdtb.png" alt="Visual Experience Database">
 </p>
+
 This is the official repository for the paper "From efficiency to experience: Integrating automated visual quality assessment into urban bus network design". The work presents a data‑driven framework that incorporates automated street‑level visual quality assessment for urban transit network design via the Large Language Model‑Enhanced Hybrid Heuristic Algorithm (LEHHA).
 
 ## Highlights
