@@ -28,27 +28,82 @@ conda env create -f environment.yml
 conda activate visual-transit
 ```
 
-### 2. Data Preparation
+### 2. Data Preparation (with zensvi)
 
-Download and organize the required datasets:
+Download and organize the required datasets using zensvi:
 
-**Street View Imagery (SVI)**: Collect street view images for your study area using Baidu Maps API or Google Street View API.
+**Street View Imagery (SVI)**: Collect street view images for your study area using zensvi with Baidu Maps API or Google Street View API.
 
-**Road Network**: Extract road network topology from OpenStreetMap (OSM).
+**Road Network**: Extract road network topology from OpenStreetMap (OSM) using zensvi built-in tools.
 
 **Travel Demand**: Prepare OD (origin-destination) demand matrix for your study area.
 
-Place the datasets in the following structure:
+**Demo script**:
+```python
+# Example: Collecting street view images with zensvi
+import zensvi
+
+# Initialize zensvi with your API credentials
+zen = zensvi.Zensvi(api_key="your_api_key")
+
+# Collect street view images for your study area
+zen.collect_streetview(
+    bbox=[min_lon, min_lat, max_lon, max_lat],  # bounding box
+    output_dir="data/street_view/",
+    source="baidu"  # or "google"
+)
 ```
 
-```
+### 3. Visual Experience Assessment (with zensvi)
 
-### 3. Visual Experience Assessment
-
-Run the dual-layer deep learning framework to extract visual indicators:
+Run the dual-layer deep learning framework to extract visual indicators using zensvi:
 
 ```sh
+# Example: Using zensvi for visual quality assessment
+python -c "
+import zensvi
 
+# Initialize zensvi visual quality assessment
+vqa = zensvi.VisualQualityAssessment(model_path='models/')
+
+# Process street view images and extract visual indicators
+results = vqa.assess(
+    input_dir='data/street_view/',
+    output_dir='data/visual_indicators/',
+    indicators=['greenery', 'skyline', 'enclosure', 'complexity', 'safety']
+)
+
+print('Visual assessment completed!')
+"
+```
+
+**Demo script**:
+```python
+# Example: Visual quality assessment with zensvi
+import zensvi
+import pandas as pd
+
+# Initialize the visual quality assessor
+vqa = zensvi.VisualQualityAssessment()
+
+# Load street view images
+images = vqa.load_images('data/street_view/*.jpg')
+
+# Extract visual indicators for each image
+indicators = []
+for img in images:
+    result = vqa.extract_indicators(img)
+    indicators.append({
+        'image_id': img.id,
+        'greenery': result.greenery_score,
+        'sky_openness': result.sky_score,
+        'visual_complexity': result.complexity_score,
+        'safety_perception': result.safety_score
+    })
+
+# Save results to CSV
+df = pd.DataFrame(indicators)
+df.to_csv('data/visual_indicators/assessment_results.csv', index=False)
 ```
 
 ### 4. Network Optimization
