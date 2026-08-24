@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="./fig/logo.png" alt="Logo" width="200">
-</p>
 <h4 align="center">Automated Visual Experience Assessment & Network Optimization with assist of LLM</h4>
 
 <p align="center">
@@ -149,21 +146,6 @@ LEHHA/
 | NSGA-II | 0.1796 ± 0.0090 | 0.3321 ± 0.0049 | 0.5416 ± 0.0206 | 560.05 ± 18.30 |
 | MOEA/D | 0.1731 ± 0.0076 | 0.3181 ± 0.0041 | 0.5453 ± 0.0201 | 978.83 ± 105.65 |
 | MOPSO | 0.1517 ± 0.0099 | 0.3287 ± 0.0121 | 0.4622 ± 0.0134 | 658.57 ± 72.38 |
-
-## Citation
-
-A paper about this work has been submitted for publication.
-
-If you like this work and would like to use it in a scientific context, please cite our article:
-
-```bibtex
-@article{visual_experience_optimization,
-  title = {From efficiency to experience: Integrating automated visual quality assessment into urban bus network design},
-  author = {Zhao, Tianhong and Lin, Yinbao and Huang, Zhengdong and Zhang, Yatao and Cao, Jinzhou and Tu, Wei and Biljecki, Filip},
-  journal = {Under Review},
-  year = {2026}
-}
-```
 
 ## Acknowledgements
 
