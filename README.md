@@ -121,7 +121,7 @@ python main.py
 ## Project Structure
 
 ```
-auto-visual-assessment-llm-hybrid-heuristic-bus-network-design/
+LEHHA/
 ├── data/                   # Input datasets for optimization
 ├── src/                    # Source code
 │   ├── Prompt/             # LLM prompt templates for operator discovery
